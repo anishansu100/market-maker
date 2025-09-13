@@ -1,4 +1,4 @@
-import type { Socket, Server } from "socket.io";
+import type { Server } from "socket.io";
 import { redisHelpers, redis } from "../../redis/index.js";
 import type { User } from "../../redis/index.js";
 import type { CustomSocket } from "../types.js";

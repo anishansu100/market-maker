@@ -28,10 +28,6 @@ interface RoomInfo {
 
 type GamePhase = "welcome" | "lobby" | "chat";
 
-// Game rules that the host will explain
-const GAME_RULES = [
-  "🎮 Welcome to Market Maker!",
-];
 
 export function useGameSocket() {
   const [isConnected, setIsConnected] = useState(false);
@@ -48,7 +44,7 @@ export function useGameSocket() {
   const [hostIsExplaining, setHostIsExplaining] = useState(false);
   
   const socketRef = useRef<Socket | null>(null);
-  
+
   // Helper function to create host messages
   const createHostMessage = useCallback((content: string): Message => {
     return {
@@ -87,7 +83,7 @@ export function useGameSocket() {
     });
 
     // Room events
-    socket.on("room_created", ({ roomCode, timestamp }: { roomCode: string; timestamp: number }) => {
+    socket.on("room_created", ({ roomCode, _timestamp }: { roomCode: string; _timestamp: number }) => {
       console.log("🎮 Room/Game created:", roomCode);
       setGamePhase("lobby"); // Game created = lobby phase
     });
@@ -206,8 +202,8 @@ export function useGameSocket() {
     });
 
     // Connection events
-    socket.on("pong", ({ timestamp }: { timestamp: number }) => {
-      console.log("🏓 Pong received:", new Date(timestamp));
+    socket.on("pong", ({ _timestamp }: { _timestamp: number }) => {
+              console.log("🏓 Pong received:", new Date(_timestamp));
     });
 
     socket.on("room_deleted", ({ roomCode, message, timestamp }: {
@@ -224,7 +220,7 @@ export function useGameSocket() {
       setMessages([]);
       setRoomInfo(null);
       setGamePhase("welcome");
-      
+
       // Show notification (optional)
       alert(`Room ${roomCode} was deleted: ${message}`);
     });

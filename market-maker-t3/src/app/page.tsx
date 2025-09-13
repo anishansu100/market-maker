@@ -1,8 +1,8 @@
 "use client";
 import { useEffect } from "react";
-import GameWelcome from "@/app/home/page";
-import GameLobby from "@/app/lobby/page";
-import GameChat from "@/app/chat/page";
+import GameWelcome from "@/components/GameWelcome";
+import GameLobby from "@/components/GameLobby";
+import GameChat from "@/components/GameChat";
 import { toast } from "sonner";
 import { useGameSocket } from "@/hooks/use-socket";
 
@@ -42,7 +42,7 @@ const Index = () => {
     
     toast.success("Creating game...", {
       description: "Please wait while we set up your game",
-    });
+        });
   };
 
   // Handle game joining with real-time WebSocket

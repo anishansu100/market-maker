@@ -17,12 +17,14 @@
     "lint": "next lint",
     "lint:fix": "next lint --fix",
     "preview": "next build && next start",
-    "start": "next start",
+    "start": "npm run websocket",
+    "start:next": "next start",
     "typecheck": "tsc --noEmit",
     "test": "jest",
     "server:dev": "node --loader ts-node/esm src/server/websocket/index.ts",
     "server:build": "tsc -p server",
-    "server:start": "node dist/server/websocket/index.js"
+    "server:start": "node dist/server/websocket/index.js",
+    "websocket": "node --loader ts-node/esm src/server/websocket/index.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.1",
